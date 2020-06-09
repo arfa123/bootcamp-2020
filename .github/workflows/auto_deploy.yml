@@ -25,11 +25,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: Installing node
       uses: actions/setup-node@v2-beta
-	  with:
+	    with:
       	node-version: 12
 
     # Runs a set of commands using the runners shel
-	- name: Installing surge
-	  run: npm install -g surge
-	- name: deploying using surge
-	  run: surge ./ wanting-loss.surge.sh --token $ {{ secrets.SURGE_TOKEN }}
+    - name: Installing surge
+      run: npm install -g surge
+    - name: deploying using surge
+      run: surge ./ wanting-loss.surge.sh --token $ {{ secrets.SURGE_TOKEN }}
