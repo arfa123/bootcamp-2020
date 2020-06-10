@@ -7,8 +7,6 @@ name: Bootcamp 2020
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,13 +20,16 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Installing node
-      uses: actions/setup-node@v2-beta
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
       with:
-        node-version: 12
-
-    # Runs a set of commands using the runners shel
+        version: 12
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.3.0
+      with:
+        cmd: install
+    - name: Creating Build
+      run: yarn build
     - name: Installing surge
       run: npm install -g surge
     - name: deploying using surge
